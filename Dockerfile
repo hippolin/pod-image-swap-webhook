@@ -1,10 +1,11 @@
-FROM golang:1.23.7-alpine3.21 as builder
+FROM golang:1.24.1-alpine3.21 AS builder
 
 WORKDIR /src
 
 RUN apk --update --no-cache add git make
 
-ENV CGO_ENABLED=0
+ENV CGO_ENABLED=0 \
+    GOTOOLCHAIN=local
 
 COPY go.mod go.mod
 COPY go.sum go.sum
